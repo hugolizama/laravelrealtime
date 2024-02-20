@@ -1,0 +1,9 @@
+"C:\www\php74\php" "C:\ProgramData\ComposerSetup\bin\composer.phar" create-project --prefer-dist laravel/laravel LaravelRealTime "6.*"
+
+"C:\www\php74\php" "C:\ProgramData\ComposerSetup\bin\composer.phar" require laravel/ui
+
+"C:\www\php74\php" "C:\ProgramData\ComposerSetup\bin\composer.phar" require laravel/ui
+
+"C:\www\php74\php" artisan ui bootstrap --auth
+
+"C:\www\php74\php" "C:\ProgramData\ComposerSetup\bin\composer.phar" require pusher/pusher-php-server
