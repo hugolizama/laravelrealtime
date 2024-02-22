@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -12,20 +13,22 @@ use Illuminate\Queue\SerializesModels;
 
 use function Psy\debug;
 
-class RemainingTimeChanged implements ShouldBroadcast
+class GreetingSent implements ShouldBroadcast
 {
 	use Dispatchable, InteractsWithSockets, SerializesModels;
 
-	public $time;
+	protected $user;
+	public $message;
 	/**
 	 * Create a new event instance.
 	 *
 	 * @return void
 	 */
-	public function __construct($time)
+	public function __construct(User $user, $message)
 	{
 		//
-		$this->time = $time;
+		$this->user = $user;
+		$this->message = $message;
 	}
 
 	/**
@@ -35,7 +38,7 @@ class RemainingTimeChanged implements ShouldBroadcast
 	 */
 	public function broadcastOn()
 	{
-		//\Log::debug("Tiempo: {$this->time}");
-		return new Channel('game');
+		//\Log::debug("{$this->message}");
+		return new PrivateChannel("chat.greet.{$this->user->id}");
 	}
 }

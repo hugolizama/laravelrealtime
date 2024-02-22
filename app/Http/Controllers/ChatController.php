@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\GreetingSent;
+use App\Events\MessageSent;
+use App\User;
 use Illuminate\Http\Request;
 
 class ChatController extends Controller
@@ -24,5 +27,26 @@ class ChatController extends Controller
 	public function showChat()
 	{
 		return view('chat.show');
+	}
+
+	public function messageReceived(Request $request){
+		$rules = [
+			'message' => 'required'
+		];
+
+		$request->validate($rules);
+
+		broadcast(new MessageSent($request->user(), $request->message));
+
+		return response()->json('message broadcast');
+	}
+
+
+	public function greetReceived(Request $request, User $user){
+
+		broadcast(new GreetingSent($user, "{$request->user()->name} te ha saludado."));
+		broadcast(new GreetingSent($request->user(), "Tu saludaste al usuario {$user->name}"));
+
+		return "{$request->user()->name} esta saludando al usuario {$user->name}";
 	}
 }

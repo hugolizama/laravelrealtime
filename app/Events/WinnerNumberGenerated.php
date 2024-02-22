@@ -35,7 +35,7 @@ class WinnerNumberGenerated implements ShouldBroadcast
 	 */
 	public function broadcastOn()
 	{
-		\Log::debug("Numero: {$this->number}");
+		//\Log::debug("Numero: {$this->number}");
 		return new Channel('game');
 	}
 }
