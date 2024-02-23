@@ -43459,8 +43459,16 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
-  key: "7a94d43aeb63dc734d9f",
-  cluster: "us2",
+  key: "public-key-123",
+  cluster: "",
+  /* configuracion para utilizar nuestro servicio ServerWebSockets */
+  wsHost: 'serverwebsockets.local',
+  wsPort: 80,
+  //6001 original y 80 cuando se utiliza el reverse proxy en apache
+  //disableStats: false,
+  forceTLS: false,
+  // false para servicio local de ServerWebSockets por carecer de certificados
+  /* fin configuracion para utilizar nuestro servicio ServerWebSockets */
   encrypted: true
 });
 

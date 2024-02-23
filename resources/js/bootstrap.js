@@ -37,5 +37,11 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
      broadcaster: 'pusher',
      key: process.env.MIX_PUSHER_APP_KEY,
      cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-     encrypted: true
+		 /* configuracion para utilizar nuestro servicio ServerWebSockets */
+		 wsHost: 'serverwebsockets.local',
+		 wsPort: 80, //6001 original y 80 cuando se utiliza el reverse proxy en apache
+		 //disableStats: false,
+		 forceTLS: false, // false para servicio local de ServerWebSockets por carecer de certificados
+		 /* fin configuracion para utilizar nuestro servicio ServerWebSockets */
+     encrypted: true 
  });

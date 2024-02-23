@@ -37,6 +37,11 @@ return [
             'app_id' => env('PUSHER_APP_ID'),
             'options' => [
                 'cluster' => env('PUSHER_APP_CLUSTER'),
+								/* configuracion para utilizar nuestro servicio ServerWebSockets */
+								'host' => 'serverwebsockets.local',
+								'port' => 80, //6001 original y 80 cuando se utiliza el reverse proxy en apache
+								//'schema' => 'http',
+								/* fin configuracion para utilizar nuestro servicio ServerWebSockets */
                 'useTLS' => true,
             ],
         ],

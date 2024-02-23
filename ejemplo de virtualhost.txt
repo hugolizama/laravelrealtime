@@ -1,0 +1,35 @@
+<VirtualHost 127.0.0.10:80>
+	DocumentRoot "C:\www\apache\htdocs\hugo\LaravelRealTime\public"
+	ServerName desarrollo.local
+	ServerAlias laravelrealtime.local
+	ErrorLog "logs/laravelrealtime-error.log"
+	CustomLog "logs/laravelrealtime-access.log" combined
+	
+	#SSLEngine on 	
+	SSLCertificateFile C:\www\ssl_local\desarrollo.local.crt
+	SSLCertificateKeyFile C:\www\ssl_local\desarrollo.local.key
+	
+	FcgidWrapper "c:/www/php74/php-cgi.exe" .php 
+	AddHandler fcgid-script .php
+	#FcgidMaxRequestLen	3072000000000
+	#FcgidIOTimeout 300
+	#FcgidIdleTimeout 300
+	#FcgidConnectTimeout 300
+	#FcgidProcessLifeTime  300
+	
+	<Directory "C:\www\apache\htdocs\hugo\LaravelRealTime\public">
+		<FilesMatch "\.php$">
+			SetHandler fcgid-script 
+		</FilesMatch> 
+		Options Indexes Includes FollowSymLinks SymLinksifOwnerMatch ExecCGI MultiViews
+		AllowOverride All
+		Require all granted
+		#Require local	
+	</Directory>
+
+	<Directory "c:/www/php74/">
+		<Files "php-cgi.exe">		
+			Require all granted		
+		</Files>
+	</Directory>	
+</VirtualHost>
