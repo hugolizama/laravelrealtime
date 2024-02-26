@@ -40,7 +40,7 @@ return [
 								/* configuracion para utilizar nuestro servicio ServerWebSockets */
 								'host' => 'serverwebsockets.local',
 								'port' => 80, //6001 original y 80 cuando se utiliza el reverse proxy en apache
-								//'schema' => 'http',
+								//'schema' => 'http[s]',
 								/* fin configuracion para utilizar nuestro servicio ServerWebSockets */
                 'useTLS' => true,
             ],
